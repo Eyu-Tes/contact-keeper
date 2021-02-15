@@ -17,6 +17,11 @@ app = express()
 // use HTTP request logger middleware if server is running in development mode
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
 
+// load routers
+app.use('/api/users', require('./routes/users'))
+app.use('/api/auth', require('./routes/auth'))
+app.use('/api/contacts', require('./routes/contacts'))
+
 const PORT = process.env.PORT || 8000
 
 // attach listener port to server
