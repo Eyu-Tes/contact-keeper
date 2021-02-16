@@ -17,6 +17,9 @@ app = express()
 // use HTTP request logger middleware if server is running in development mode
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
 
+// body parser middleware (required inorder to use req.body)
+app.use(express.json())
+
 // load routers
 app.use('/api/users', require('./routes/users'))
 app.use('/api/auth', require('./routes/auth'))
