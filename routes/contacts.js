@@ -1,5 +1,14 @@
 const express = require('express')
 
+const auth = require('../middleware/auth')
+
+const {
+    getAllContacts, 
+    createContact,
+    updateContact, 
+    deleteContact
+} = require('../controllers/contacts')
+
 // initializer router
 const router = express.Router()
 
@@ -8,27 +17,19 @@ const router = express.Router()
 router.route('/')
 // @method  GET
 // @desc    Get all contacts of a user
-.get((req, res) => {
-    res.send('Get all contacts a user')
-})
+.get(auth, getAllContacts)
 // @method  POST
 // @desc    Add new contact
-.post((req, res) => {
-    res.send('Add new contact')
-})
+.post(auth, createContact)
 
 // @route   /api/contacts/:id
 // @access  Private
 router.route('/:id')
 // @method  PUT
 // @desc    Update contact
-.put((req, res) => {
-    res.send('Update contact')
-})
+.put(auth, updateContact)
 // @method  DELETE 
 // @desc    Delete contact
-.delete((req, res) => {
-    res.send('Delete contact')
-})
+.delete(auth, deleteContact)
 
 module.exports = router

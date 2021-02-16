@@ -5,6 +5,7 @@ const {
 
 const User = require('../models/User')
 
+// Get logged in user
 module.exports.getLoggedinUser = async (req, res) => {
     try {
         /* if the correct token is sent & user is logged in, 
@@ -20,6 +21,7 @@ module.exports.getLoggedinUser = async (req, res) => {
     }
 }
 
+// Login a user
 module.exports.signinUser = async (req, res) => {
     const {email, password} = req.body
     try {

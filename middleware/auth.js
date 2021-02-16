@@ -3,6 +3,7 @@
 
 const jwt = require('jsonwebtoken')
 
+/* NB: All private routes are going to use this middleware */
 // protect routes from unauthenticated access
 // next means move on to the next middleware
 module.exports = (req, res, next) => {

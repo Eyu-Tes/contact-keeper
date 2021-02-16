@@ -20,7 +20,7 @@ router.route('/')
 // @method  GET
 // @desc    Get loggedin user
 // @access  Private
-.get(auth, getLoggedinUser)                 //  passes the auth middleware to ensure authorization
+.get(auth, getLoggedinUser)     //  passes the auth middleware as paremeter to ensure authentication
 // @method  POST
 // @desc    Auth user & get token
 // @access  Public
