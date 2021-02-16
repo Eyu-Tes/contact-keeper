@@ -1,5 +1,7 @@
 const express = require('express')
 
+const auth = require('../middleware/auth')
+
 const {
     userSigninValidationRules, 
     validate
@@ -18,7 +20,7 @@ router.route('/')
 // @method  GET
 // @desc    Get loggedin user
 // @access  Private
-.get(getLoggedinUser)
+.get(auth, getLoggedinUser)                 //  passes the auth middleware to ensure authorization
 // @method  POST
 // @desc    Auth user & get token
 // @access  Public

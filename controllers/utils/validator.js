@@ -13,7 +13,8 @@ const userSigninValidationRules = () => ([
     body('password', 'Password is required').exists()
 ])
 
-// NB: make sure u add the 'next' middleware so that the router proceeds to the next handler function
+// validate function is a middleware because it contain 'next'
+// NB: make sure u add the 'next', so that the router proceeds to the next handler function
 const validate = (req, res, next) => {
     const errors = validationResult(req)
 

@@ -5,8 +5,19 @@ const {
 
 const User = require('../models/User')
 
-module.exports.getLoggedinUser = (req, res) => {
-    res.send('Get logged in user')
+module.exports.getLoggedinUser = async (req, res) => {
+    try {
+        /* if the correct token is sent & user is logged in, 
+           the request object (req) is going to have a user object attached to it 
+           with the current user's id */
+        // select('-password') : get the data but don't return the password
+        const user = await User.findById(req.user.id).select('-password')
+        // const user = await User.findById(req.user.id).select(['-password', '-name'])
+        res.json(user)
+    } catch (err) {
+        console.log(err.message)
+        res.send(500).json({msg: 'Server Error'})
+    }
 }
 
 module.exports.signinUser = async (req, res) => {
