@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-    userValidationRules, 
+    userSignupValidationRules,
     validate
 } = require('../controllers/utils/validator')
 
@@ -15,6 +15,6 @@ const router = express.Router()
 // @route   POST /api/users
 // @desc    Register a user
 // @access  Public
-router.post('/', userValidationRules(), validate, signupUser)
+router.post('/', userSignupValidationRules(), validate, signupUser)
 
 module.exports = router

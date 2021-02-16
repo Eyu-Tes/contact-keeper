@@ -57,5 +57,17 @@ UserSchema.methods.hashPassword = async (password) => {
     }
 }
 
+// compare passwords
+// Don't use an arrow function, as it changes the scope of 'this'
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+    try {
+        const isMatch = await bcrypt.compare(candidatePassword, this.password)
+        return isMatch
+    } catch (err) {
+        console.log(err)
+        return null
+    }
+}
+
 // User model
 module.exports = User = mongoose.model('User', UserSchema)

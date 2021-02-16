@@ -1,11 +1,16 @@
 const { body, validationResult } = require('express-validator')
 
-const userValidationRules = () => ([
+const userSignupValidationRules = () => ([
         body('name')
         .not().isEmpty().withMessage('Please include name')
         .isLength({min: 4}).withMessage('Please make sure name is atleast 4 characters long.'), 
         body('email', 'Please include a valid email').isEmail(),
         body('password', 'Please enter a password with 6 or more characters').isLength({min: 6})
+])
+
+const userSigninValidationRules = () => ([
+    body('email', 'Please include a valid email').isEmail(),
+    body('password', 'Password is required').exists()
 ])
 
 // NB: make sure u add the 'next' middleware so that the router proceeds to the next handler function
@@ -27,6 +32,7 @@ const validate = (req, res, next) => {
 }
 
 module.exports = {
-    userValidationRules, 
+    userSignupValidationRules,
+    userSigninValidationRules,
     validate,
 }

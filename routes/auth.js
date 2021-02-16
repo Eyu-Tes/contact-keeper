@@ -1,5 +1,15 @@
 const express = require('express')
 
+const {
+    userSigninValidationRules, 
+    validate
+} = require('../controllers/utils/validator')
+
+const {
+    getLoggedinUser,
+    signinUser
+} = require('../controllers/auth')
+
 // initializer router
 const router = express.Router()
 
@@ -8,16 +18,10 @@ router.route('/')
 // @method  GET
 // @desc    Get loggedin user
 // @access  Private
-.get(                                       
-    (req, res) => {
-    res.send('Get logged in user')
-})
+.get(getLoggedinUser)
 // @method  POST
 // @desc    Auth user & get token
 // @access  Public
-.post(                                  
-    (req, res) => {
-    res.send('Log in user')
-})
+.post(userSigninValidationRules(), validate, signinUser)
 
 module.exports = router

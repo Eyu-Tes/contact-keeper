@@ -1,5 +1,6 @@
-const express = require('express')
-const jwt = require('jsonwebtoken')
+const {
+    createToken
+} = require('./utils/token')
 
 const User = require('../models/User')
 
@@ -10,16 +11,8 @@ module.exports.signupUser = async (req, res) => {
         let error = await user.validate()
         if(error) throw(error)
         await user.save()
-        // payload is the object we want to send in the token
-        const payload = {
-            user: {
-                id: user.id
-            }
-        }
-        // syntax: jwt.sign(payload, secretOrPrivateKey, [options, callback])
-        const token = jwt.sign(payload, process.env.jwtSECRET, {
-            expiresIn: 86400        // expires in 24 hours
-        })
+        // create token
+        const token = createToken(user)
         // send a json web token to the user
         res.json({token})
     } catch (err) {
