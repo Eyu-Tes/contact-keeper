@@ -28,24 +28,25 @@ const ContactContextProvider = (props) => {
         }
     ])
 
-    // set current contact
-    const setCurrent = () => {
-
-    }
-    // clear current contact
-    const clearCurrent = () => {
-
-    }
     // add contact
-    const addContact = () => {
-
+    const addContact = contact => {
+        contact.id = uuid()
+        setContacts([...contacts, contact])
     }
     // update contact 
     const updateContact = () => {
 
     }
     // delete contact
-    const deleteContact = () => {
+    const deleteContact = (id) => {
+        setContacts(contacts.filter(contact => contact.id !== id))
+    }
+    // set current contact
+    const setCurrent = () => {
+
+    }
+    // clear current contact
+    const clearCurrent = () => {
 
     }
     // filter contacts
