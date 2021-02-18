@@ -28,26 +28,28 @@ const ContactContextProvider = (props) => {
         }
     ])
 
+    const [current, setCurrent] = useState(null)
+
     // add contact
     const addContact = contact => {
         contact.id = uuid()
         setContacts([...contacts, contact])
     }
     // update contact 
-    const updateContact = () => {
-
+    const updateContact = (updatedContact) => {
+        setContacts(contacts.map(contact => contact.id === updatedContact.id ? updatedContact : contact))
     }
     // delete contact
     const deleteContact = (id) => {
         setContacts(contacts.filter(contact => contact.id !== id))
     }
     // set current contact
-    const setCurrent = () => {
-
+    const setCurrentContact = (id) => {
+        setCurrent(contacts.find(contact => contact.id === id))
     }
     // clear current contact
-    const clearCurrent = () => {
-
+    const clearCurrentContact = () => {
+        setCurrent(null)
     }
     // filter contacts
     const filterContacts = () => {
@@ -61,8 +63,9 @@ const ContactContextProvider = (props) => {
     return(
         <ContactContext.Provider value={{
             contacts, 
-            setCurrent, 
-            clearCurrent,
+            current,
+            setCurrentContact, 
+            clearCurrentContact,
             addContact, 
             updateContact, 
             deleteContact, 
