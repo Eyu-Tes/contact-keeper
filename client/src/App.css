@@ -1,31 +1,71 @@
 :root {
     --color-primary: #003699;
     --color-dark: #333;
+    --color-light: #fbfbfb;
+    --color-success: #28a745;
     --font-primary: 'Trebuchet MS', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+  
+body {
     font-family: var(--font-primary);
-}
-
-.btn-primary, .bg-primary, .badge-primary, .alert-primary {
-  background: var(--color-primary) !important;
-  color: #fff;
-}
-
-.btn-dark, .bg-dark, .badge-dark, .alert-dark {
-    background: var(--color-dark) !important;
-    color: #fff;
-  }
-
-.p {
-    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #333;
 }
 
 a, input, button, select, textarea {
     box-shadow: none !important;
     outline: none !important;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 0.5rem;
+}
+
+.text-primary {
+    color: var(--color-primary) !important;
+}
+
+.btn-primary, .bg-primary, .badge-primary, .alert-primary {
+    background-color: var(--color-primary) !important;
+    color: #fff;
+}
+
+.btn-dark, .bg-dark, .badge-dark, .alert-dark {
+    background-color: var(--color-dark) !important;
+    color: #fff;
+}
+
+.btn-light, .bg-light, .badge-light, .alert-light {
+    background-color: var(--color-light) !important;
+    color: #333;
+}
+
+.btn-success, .bg-success, .badge-success, .alert-success {
+    background-color: var(--color-success);
+    color: #fff;
+}
+
+.p {
+    padding: 0.5rem;
+}
+
+.m {
+    padding: 0.5rem;
+}
+
+.card {
+    padding: 0.5rem 1rem;
+    border: #ccc 1px dotted;
+    margin: 0.7rem 0;
 }
 
 .navbar {
