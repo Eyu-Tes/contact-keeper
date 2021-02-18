@@ -1,0 +1,48 @@
+:root {
+    --color-primary: #003699;
+    --color-dark: #333;
+    --font-primary: 'Trebuchet MS', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-primary);
+}
+
+.btn-primary, .bg-primary, .badge-primary, .alert-primary {
+  background: var(--color-primary) !important;
+  color: #fff;
+}
+
+.btn-dark, .bg-dark, .badge-dark, .alert-dark {
+    background: var(--color-dark) !important;
+    color: #fff;
+  }
+
+.p {
+    padding: 0.5rem;
+}
+
+a, input, button, select, textarea {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.navbar {
+    padding: 0 1rem;
+    margin-bottom: 1rem; 
+}
+
+.navbar a{
+    color: #fff;
+}
+
+.navbar-brand {
+    font-size: 1.5rem !important;
+}
+
+.navbar-toggler-icon {
+    /* Must override the default background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); */
+    /* Only change the ---> stroke='rgba(0, 0, 0, 0.5)' to stroke='rgba(255, 255, 255, 1)' */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
