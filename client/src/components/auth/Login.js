@@ -25,10 +25,12 @@ const Login = () => {
                     <label htmlFor="email">Email Address</label>
                     <input 
                         type="email"
+                        autoFocus
                         className="form-control form-control-sm"
                         name="email"
                         value={email}
                         onChange={onChange}
+                        required
                     />
                 </div>
                 <div className="form-group">
@@ -39,6 +41,7 @@ const Login = () => {
                         name="password"
                         value={password}
                         onChange={onChange}
+                        required
                     />
                 </div>
                 <input type="submit" value="Login" className="btn btn-primary btn-block"/>

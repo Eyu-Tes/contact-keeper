@@ -5,27 +5,32 @@ import Home from './components/pages/Home'
 import About from './components/pages/About'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import Alert from './components/layout/Alerts'
 import ContactContextProvider from './context/contact/ContactContext'
 import AuthContextProvider from './context/auth/AuthContext'
+import AlertContextProvider from './context/alert/AlertContext'
 import './App.css'
 
 const App = () => {
   return (
     <AuthContextProvider>
       <ContactContextProvider>
-        <Router>
-          <Fragment>
-            <Navbar/>
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={Home}></Route>
-                <Route exact path="/about" component={About}></Route>
-                <Route exact path="/register" component={Register}></Route>
-                <Route exact path="/login" component={Login}></Route>
-              </Switch>
-            </div>
-          </Fragment>
-        </Router>
+        <AlertContextProvider>
+          <Router>
+            <Fragment>
+              <Navbar/>
+              <div className="container">
+                <Alert />
+                <Switch>
+                  <Route exact path="/" component={Home}></Route>
+                  <Route exact path="/about" component={About}></Route>
+                  <Route exact path="/register" component={Register}></Route>
+                  <Route exact path="/login" component={Login}></Route>
+                </Switch>
+              </div>
+            </Fragment>
+          </Router>
+        </AlertContextProvider>
       </ContactContextProvider>
     </AuthContextProvider>
   )

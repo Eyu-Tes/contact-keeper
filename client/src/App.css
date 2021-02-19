@@ -3,6 +3,7 @@
     --color-dark: #333;
     --color-light: #fbfbfb;
     --color-success: #28a745;
+    --color-danger: #dc3545;
     --font-primary: 'Trebuchet MS', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -53,6 +54,11 @@ ul {
 .btn-success, .bg-success, .badge-success, .alert-success {
     background-color: var(--color-success);
     color: #fff;
+}
+
+.btn-danger, .bg-danger, .badge-danger, .alert-danger {
+  background: var(--color-danger);
+  color: #fff;
 }
 
 .p {
