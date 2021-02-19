@@ -9,7 +9,12 @@ import Alert from './components/layout/Alerts'
 import ContactContextProvider from './context/contact/ContactContext'
 import AuthContextProvider from './context/auth/AuthContext'
 import AlertContextProvider from './context/alert/AlertContext'
+import setAuthToken from './utils/setAuthToken'
 import './App.css'
+
+if(localStorage.token) {
+  setAuthToken(localStorage.token)
+}
 
 const App = () => {
   return (
