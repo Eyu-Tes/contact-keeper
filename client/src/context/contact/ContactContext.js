@@ -30,6 +30,8 @@ const ContactContextProvider = (props) => {
 
     const [current, setCurrent] = useState(null)
 
+    const [filtered, setFiltered] = useState(null)
+
     // add contact
     const addContact = contact => {
         contact.id = uuid()
@@ -52,18 +54,23 @@ const ContactContextProvider = (props) => {
         setCurrent(null)
     }
     // filter contacts
-    const filterContacts = () => {
-
+    const filterContacts = text => {
+        setFiltered(contacts.filter(contact => {
+            // regular exp
+            const regex = new RegExp(text.trim(), 'gi')
+            return (contact.name.match(regex) || contact.email.match(regex))
+        }))
     }
     // clear filter
     const clearFilter = () => {
-
+        setFiltered(null)
     }
     
     return(
         <ContactContext.Provider value={{
             contacts, 
             current,
+            filtered,
             setCurrentContact, 
             clearCurrentContact,
             addContact, 

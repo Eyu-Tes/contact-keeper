@@ -35,8 +35,7 @@ const ContactForm = () => {
             <div className="form-group">
                 <input 
                     type="text" 
-                    placeholder="Name" 
-                    autoFocus
+                    placeholder="Name"
                     name="name" 
                     value={name} 
                     onChange={onChange}

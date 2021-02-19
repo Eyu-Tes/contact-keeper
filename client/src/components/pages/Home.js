@@ -1,5 +1,6 @@
 import Contacts from '../../components/contacts/Contacts'
 import ContactForm from '../../components/contacts/ContactForm'
+import ContactFilter from '../../components/contacts/ContactFilter'
 
 const Home = () => (
     <div className="row">
@@ -7,6 +8,7 @@ const Home = () => (
             <ContactForm/>
         </div>
         <div className="col-md-6">
+            <ContactFilter/>
             <Contacts/>
         </div>
     </div>
