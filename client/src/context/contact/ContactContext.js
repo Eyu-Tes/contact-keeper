@@ -4,10 +4,30 @@ import axios from 'axios'
 export const ContactContext = createContext()
 
 const ContactContextProvider = (props) => {
-    const [contacts, setContacts] = useState([])
+    const [contacts, setContacts] = useState(null)
     const [current, setCurrent] = useState(null)
     const [filtered, setFiltered] = useState(null)
     const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    // get contacts
+    const getContacts = async () => {
+        try {
+            const res = await axios.get('/api/contacts')
+            setContacts(res.data)
+            setLoading(false)
+        } catch (err) {
+            setError(err.response.data.msg)
+        }
+    }
+
+    // clear contacts 
+    const clearContacts = () => {
+        setContacts(null)
+        setFiltered(null)
+        setError(null)
+        setCurrent(null)
+    }
 
     // add contact
     const addContact = async contact => {
@@ -19,21 +39,24 @@ const ContactContextProvider = (props) => {
         try {
             const res = await axios.post('/api/contacts', contact, config)
             setContacts([...contacts, res.data])
+            setLoading(false)
         } catch (err) {
             setError(err.response.data.msg)
         }
     }
     // update contact 
     const updateContact = (updatedContact) => {
-        setContacts(contacts.map(contact => contact.id === updatedContact.id ? updatedContact : contact))
+        setContacts(contacts.map(contact => contact._id === updatedContact._id ? updatedContact : contact))
+        setLoading(false)
     }
     // delete contact
     const deleteContact = (id) => {
-        setContacts(contacts.filter(contact => contact.id !== id))
+        setContacts(contacts.filter(contact => contact._id !== id))
+        setLoading(false)
     }
     // set current contact
     const setCurrentContact = (id) => {
-        setCurrent(contacts.find(contact => contact.id === id))
+        setCurrent(contacts.find(contact => contact._id === id))
     }
     // clear current contact
     const clearCurrentContact = () => {
@@ -58,6 +81,9 @@ const ContactContextProvider = (props) => {
             current,
             filtered,
             error,
+            loading,
+            getContacts, 
+            clearContacts,
             setCurrentContact, 
             clearCurrentContact,
             addContact, 
