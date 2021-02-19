@@ -106,3 +106,10 @@ ul {
     opacity: 0.01;
     transition: opacity 500ms ease-in;
 }
+
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    overflow: hidden;
+    padding: 0 2rem;
+}

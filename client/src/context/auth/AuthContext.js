@@ -16,12 +16,12 @@ const AuthContextProvider = (props) => {
 
     // register user
     const registerUser = () => {
-
+        console.log('User Registered')
     }
 
     // login user
     const loginUser = () => {
-
+        console.log('Uesr Loggedin')
     }
 
     // logout
