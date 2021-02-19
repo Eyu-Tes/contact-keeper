@@ -82,8 +82,12 @@ const AuthContextProvider = (props) => {
     }
 
     // logout
-    const logoutUser = () => {
-
+    const logout = () => {
+        localStorage.removeItem('token')
+        setToken(null)
+        setIsAuthenticated(false)
+        setLoading(false)
+        setUser(null)
     }
 
     // clear errors 
@@ -101,7 +105,7 @@ const AuthContextProvider = (props) => {
             loadUser, 
             registerUser, 
             loginUser,
-            logoutUser, 
+            logout, 
             clearErrors
         }}>
             {props.children}

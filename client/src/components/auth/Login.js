@@ -31,7 +31,6 @@ const Login = (props) => {
         }
         else {
             loginUser({email, password})
-            setUser(initialUser)
         }
     }
     return(

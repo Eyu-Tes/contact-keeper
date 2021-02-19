@@ -86,6 +86,7 @@ ul {
 
 .navbar-brand {
     font-size: 1.5rem !important;
+    margin-right: 50px;
 }
 
 .navbar-toggler-icon {
@@ -118,4 +119,11 @@ ul {
     margin: 2rem auto;
     overflow: hidden;
     padding: 0 2rem;
+}
+
+/* Mobile Styles */
+@media (max-width: 700px) {
+    .hide-sm {
+      display: none;
+    }
 }

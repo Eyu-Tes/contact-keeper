@@ -6,6 +6,7 @@ import About from './components/pages/About'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Alert from './components/layout/Alerts'
+import PrivateRoute from './components/routing/PrivateRoute'
 import ContactContextProvider from './context/contact/ContactContext'
 import AuthContextProvider from './context/auth/AuthContext'
 import AlertContextProvider from './context/alert/AlertContext'
@@ -27,10 +28,10 @@ const App = () => {
               <div className="container">
                 <Alert />
                 <Switch>
-                  <Route exact path="/" component={Home}></Route>
-                  <Route exact path="/about" component={About}></Route>
-                  <Route exact path="/register" component={Register}></Route>
-                  <Route exact path="/login" component={Login}></Route>
+                  <PrivateRoute exact path="/" component={Home} />
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
                 </Switch>
               </div>
             </Fragment>

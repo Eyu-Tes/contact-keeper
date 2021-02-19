@@ -19,7 +19,6 @@ const Register = props => {
             addAlert(error, "danger")
             clearErrors()
         }
-
         // eslint-disable-next-line
     }, [error, isAuthenticated, props.history])
     const [user, setUser] = useState(initialUser)
@@ -37,7 +36,6 @@ const Register = props => {
         }
         else {
             registerUser({name, email, password})
-            setUser(initialUser)
         }
     }
     return(
