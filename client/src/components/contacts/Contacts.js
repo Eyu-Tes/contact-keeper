@@ -14,12 +14,12 @@ const Contacts = () => {
                 {
                 filtered ? 
                 filtered.map(contact => (
-                    <CSSTransition key={contact.id} timeout={500} classNames="fade">
+                    <CSSTransition key={contact._id} timeout={500} classNames="fade">
                         <ContactItem contact={contact}/>
                     </CSSTransition>
                 )) : 
                 contacts.map(contact => (
-                    <CSSTransition key={contact.id} timeout={500} classNames="fade">
+                    <CSSTransition key={contact._id} timeout={500} classNames="fade">
                         <ContactItem contact={contact}/>
                     </CSSTransition>
                 ))

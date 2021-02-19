@@ -1,41 +1,27 @@
 import {createContext, useState} from 'react'
-import {v4 as uuid} from 'uuid'
+import axios from 'axios'
 
 export const ContactContext = createContext()
 
 const ContactContextProvider = (props) => {
-    const [contacts, setContacts] = useState([
-        {
-            id: 1, 
-            name: 'Jill Johnson', 
-            email: 'jill@gmail.com', 
-            phone: '111-111-1111',
-            type: 'personal'
-        }, 
-        {
-            id: 2, 
-            name: 'Sara Watson', 
-            email: 'sara@gmail.com', 
-            phone: '222-222-2222',
-            type: 'personal'
-        }, 
-        {
-            id: 3, 
-            name: 'Harry White', 
-            email: 'harry@gmail.com', 
-            phone: '333-333-3333',
-            type: 'professional'
-        }
-    ])
-
+    const [contacts, setContacts] = useState([])
     const [current, setCurrent] = useState(null)
-
     const [filtered, setFiltered] = useState(null)
+    const [error, setError] = useState(null)
 
     // add contact
-    const addContact = contact => {
-        contact.id = uuid()
-        setContacts([...contacts, contact])
+    const addContact = async contact => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            const res = await axios.post('/api/contacts', contact, config)
+            setContacts([...contacts, res.data])
+        } catch (err) {
+            setError(err.response.data.msg)
+        }
     }
     // update contact 
     const updateContact = (updatedContact) => {
@@ -71,6 +57,7 @@ const ContactContextProvider = (props) => {
             contacts, 
             current,
             filtered,
+            error,
             setCurrentContact, 
             clearCurrentContact,
             addContact, 
