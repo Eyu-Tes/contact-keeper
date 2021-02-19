@@ -2,7 +2,7 @@ import {useRef, useContext} from 'react'
 import {ContactContext} from '../../context/contact/ContactContext'
 
 const ContactFilter = () => {
-    const {filtered, filterContacts, clearFilter} = useContext(ContactContext)
+    const {filterContacts, clearFilter} = useContext(ContactContext)
     const text = useRef('')
     const onChange = e => {
         if(text.current.value !== ''){

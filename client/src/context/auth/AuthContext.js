@@ -1,4 +1,5 @@
 import {createContext, useState} from 'react'
+import axios from 'axios'
 
 export const AuthContext = createContext()
 
@@ -15,8 +16,26 @@ const AuthContextProvider = (props) => {
     }
 
     // register user
-    const registerUser = () => {
-        console.log('User Registered')
+    const registerUser = async formData => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            const res = await axios.post('/api/users', formData, config)
+            localStorage.setItem('token', res.data)
+            setToken(res.data)
+            setIsAuthenticated(true)
+            setLoading(false)
+        } catch (err) {
+            localStorage.removeItem('token')
+            setToken(null)
+            setIsAuthenticated(false)
+            setLoading(false)
+            setUser(null)
+            setError(err.response.data.msg)
+        }
     }
 
     // login user
@@ -31,7 +50,7 @@ const AuthContextProvider = (props) => {
 
     // clear errors 
     const clearErrors = () => {
-
+        setError(null)
     }
 
     return(

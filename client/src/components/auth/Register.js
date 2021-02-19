@@ -1,9 +1,9 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import {AuthContext} from '../../context/auth/AuthContext'
 import {AlertContext} from '../../context/alert/AlertContext'
 
 const Register = () => {
-    const {registerUser} = useContext(AuthContext)
+    const {registerUser, error, clearErrors} = useContext(AuthContext)
     const {addAlert} = useContext(AlertContext)
     const initialUser = {
         name: '', 
@@ -11,6 +11,12 @@ const Register = () => {
         password: '', 
         password2: ''
     }
+    useEffect(() => {
+        if(error === "User already exists") {
+            addAlert(error, "danger")
+            clearErrors()
+        }
+    }, [error])
     const [user, setUser] = useState(initialUser)
     const {name, email, password, password2} = user
     const onChange = e => {
@@ -25,8 +31,8 @@ const Register = () => {
             addAlert("Passwords do not match", "danger")
         }
         else {
-            registerUser()
-            setUser(initialUser)
+            registerUser({name, email, password})
+            // setUser(initialUser)
         }
     }
     return(
@@ -71,7 +77,7 @@ const Register = () => {
                 <div className="form-group">
                     <label htmlFor="password2">Confirm Password</label>
                     <input 
-                        type="password2"
+                        type="password"
                         className="form-control form-control-sm"
                         name="password2"
                         value={password2}

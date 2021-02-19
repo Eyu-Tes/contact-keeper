@@ -1,6 +1,7 @@
 node_modules/
 config/config.env
 notes/
+.vscode/
 
 # dependencies
 /client/.pnp
