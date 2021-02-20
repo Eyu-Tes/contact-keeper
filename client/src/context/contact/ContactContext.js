@@ -38,21 +38,36 @@ const ContactContextProvider = (props) => {
         }
         try {
             const res = await axios.post('/api/contacts', contact, config)
-            setContacts([...contacts, res.data])
+            setContacts([res.data, ...contacts])
             setLoading(false)
         } catch (err) {
             setError(err.response.data.msg)
         }
     }
     // update contact 
-    const updateContact = (updatedContact) => {
-        setContacts(contacts.map(contact => contact._id === updatedContact._id ? updatedContact : contact))
-        setLoading(false)
+    const updateContact = async (updatedContact) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            const res = await axios.put(`/api/contacts/${updatedContact._id}`, updatedContact, config)
+            setContacts(contacts.map(contact => contact._id === updatedContact._id ? updatedContact : contact))
+            setLoading(false)
+        } catch (err) {
+            setError(err.response.data.msg)
+        }
     }
     // delete contact
-    const deleteContact = (id) => {
-        setContacts(contacts.filter(contact => contact._id !== id))
-        setLoading(false)
+    const deleteContact = async (id) => {
+        try {
+            const res = await axios.delete(`/api/contacts/${id}`)
+            setContacts(contacts.filter(contact => contact._id !== id))
+            setLoading(false)
+        } catch (err) {
+            setError(err.response.data.msg)
+        }
     }
     // set current contact
     const setCurrentContact = (id) => {
